@@ -1,0 +1,22 @@
+{
+  "name": "github-stats",
+  "version": "1.0.0",
+  "description": "Something about Github stats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deroffal/github-stats.git"
+  },
+  "author": "deroffal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deroffal/github-stats/issues"
+  },
+  "homepage": "https://github.com/deroffal/github-stats#readme",
+  "dependencies": {
+    "@octokit/rest": "^18.12.0"
+  }
+}
