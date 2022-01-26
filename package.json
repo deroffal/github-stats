@@ -2,9 +2,13 @@
   "name": "github-stats",
   "version": "1.0.0",
   "description": "Something about Github stats",
-  "main": "index.js",
+  "main": "main/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "ts-node-dev": "ts-node-dev",
+    "build": "tsc",
+    "dev": "ts-node-dev src/main.ts"
   },
   "repository": {
     "type": "git",
@@ -16,6 +20,11 @@
     "url": "https://github.com/deroffal/github-stats/issues"
   },
   "homepage": "https://github.com/deroffal/github-stats#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.12",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
+  },
   "dependencies": {
     "@octokit/rest": "^18.12.0"
   }

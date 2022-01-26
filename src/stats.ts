@@ -1,14 +1,16 @@
-function toPercent(count, total) {
+import {LanguageForRepository} from "./models";
+
+function toPercent(count: number, total: number) {
     return (count * 100 / total).toFixed(0);
 }
 
-function agregateLanguage(json) {
+export function aggregate(languagesForRepository: LanguageForRepository[]) {
     let map = new Map()
     let total = 0;
-    json.forEach(languages => {
-        let languagesAsMap = new Map(Object.entries(languages));
-        languagesAsMap.forEach((count, language) => {
 
+    languagesForRepository.forEach(languages => {
+        let languagesAsMap = languages.languages
+        languagesAsMap.forEach((count, language) => {
             let actual = map.get(language) || 0;
             map.set(language, actual + count);
             total += count;
@@ -19,9 +21,5 @@ function agregateLanguage(json) {
         console.log(language + " : " + toPercent(count, total) + "%");
     });
 
-    console.log(map);
-    console.log("total : " + total);
-
 }
 
-exports.agregateLanguage = agregateLanguage;
