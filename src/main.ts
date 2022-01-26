@@ -4,8 +4,8 @@ import * as stats from "./stats"
 const owner = "deroffal";
 
 github.listLanguagesForUser(owner)
-    .then((languages) => {
-        stats.aggregate(languages);
-    });
+    .then(stats.aggregate)
+    .then(console.info)
+
 
 

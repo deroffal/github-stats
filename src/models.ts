@@ -8,7 +8,7 @@ export class Repository {
     }
 }
 
-export class LanguageForRepository {
+export class LanguagesForRepository {
     repository: Repository
     languages: Map<string, number>
 

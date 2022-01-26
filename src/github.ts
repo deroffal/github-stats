@@ -1,5 +1,5 @@
 import {Octokit, RestEndpointMethodTypes} from "@octokit/rest";
-import {LanguageForRepository, Repository} from "./models";
+import {LanguagesForRepository, Repository} from "./models";
 
 type ReposForUserRest = RestEndpointMethodTypes["repos"]["listForUser"]["response"]
 
@@ -16,7 +16,7 @@ const listLanguages = (repository: Repository) =>
         owner: repository.owner,
         repo: repository.name
     }).then(({data}) => {
-        return new LanguageForRepository(repository, new Map(Object.entries(data)));
+        return new LanguagesForRepository(repository, new Map(Object.entries(data)));
     });
 
 
@@ -27,7 +27,7 @@ function getLanguagesForRepositories({data}: ReposForUserRest, username: string)
     return Promise.all(languagePromises);
 }
 
-export function listLanguagesForUser(username: string): Promise<Awaited<LanguageForRepository>[]> {
+export function listLanguagesForUser(username: string): Promise<Awaited<LanguagesForRepository>[]> {
     return listReposForUser(username)
         .then((repositories) => getLanguagesForRepositories(repositories, username));
 }

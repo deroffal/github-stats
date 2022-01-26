@@ -4,7 +4,7 @@
   "description": "Something about Github stats",
   "main": "main/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "tsc": "tsc",
     "ts-node-dev": "ts-node-dev",
     "build": "tsc",
@@ -21,7 +21,13 @@
   },
   "homepage": "https://github.com/deroffal/github-stats#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
     "@types/node": "^17.0.12",
+    "babel-jest": "^27.4.6",
+    "jest": "^27.4.7",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.5"
   },
