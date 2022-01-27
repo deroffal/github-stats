@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "ts-node-dev": "ts-node-dev",
     "build": "tsc",
-    "dev": "ts-node-dev src/main.ts"
+    "dev": "ts-node-dev src/index.ts"
   },
   "repository": {
     "type": "git",

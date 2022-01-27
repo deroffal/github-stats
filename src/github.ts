@@ -27,7 +27,18 @@ function getLanguagesForRepositories({data}: ReposForUserRest, username: string)
     return Promise.all(languagePromises);
 }
 
-export function listLanguagesForUser(username: string): Promise<Awaited<LanguagesForRepository>[]> {
+export async function listLanguagesForUser(username: string): Promise<Awaited<LanguagesForRepository>[]> {
     return listReposForUser(username)
         .then((repositories) => getLanguagesForRepositories(repositories, username));
+}
+
+export async function existsByUsername(username: string) {
+    return octokit.rest.users.getByUsername({
+        username: username
+    }).then(() => {
+            return true;
+        },
+        () => {
+            return false;
+        })
 }
