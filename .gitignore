@@ -5,3 +5,5 @@
 /docs/
 .idea/*
 /tmp/*
+
+.env
