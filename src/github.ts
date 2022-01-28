@@ -40,5 +40,6 @@ export async function existsByUsername(username: string) {
         },
         () => {
             return false;
-        })
+        }
+    )
 }
