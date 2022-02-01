@@ -20,16 +20,21 @@ const listLanguages = (repository: Repository) =>
     });
 
 
-function getLanguagesForRepositories({data}: ReposForUserRest, username: string) {
+function getLanguagesForRepositories(data: ReposForUserRest["data"], username: string) {
     let languagePromises = data
         .map(repo => new Repository(username, repo.name))
         .map(repository => listLanguages(repository));
     return Promise.all(languagePromises);
 }
 
+function excludeForks(repositories: ReposForUserRest): ReposForUserRest["data"] {
+    return repositories.data.filter(repository => !repository.fork);
+}
+
 export async function listLanguagesForUser(username: string): Promise<Awaited<LanguagesForRepository>[]> {
     return listReposForUser(username)
-        .then((repositories) => getLanguagesForRepositories(repositories, username));
+        .then(excludeForks)
+        .then((data) => getLanguagesForRepositories(data, username));
 }
 
 export async function existsByUsername(username: string) {
