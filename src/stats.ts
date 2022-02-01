@@ -1,13 +1,22 @@
-import {LanguagesForRepository} from "./models";
+import {LanguagesForRepository, Statistics} from "./models";
 
 export function toPercent(count: number, total: number) {
     return (count * 100 / total).toFixed(0)
 }
 
-export function aggregate(languagesForRepository: LanguagesForRepository[]) {
+export function aggregate(languagesForRepository: LanguagesForRepository[]): Statistics {
     let totalPerLanguage = new Map<string, number>()
+    let countPerMainLanguage = new Map<string, number>()
 
     languagesForRepository.forEach(languages => {
+
+        let mainLanguage = languages.getMainLanguage();
+        if (mainLanguage) {
+            let coutForLanguage = countPerMainLanguage.get(mainLanguage) || 0
+            countPerMainLanguage.set(mainLanguage, coutForLanguage + 1)
+        }
+
+
         let languagesAsMap = languages.languages
         languagesAsMap.forEach((count, language) => {
             let actual = totalPerLanguage.get(language) || 0
@@ -22,5 +31,5 @@ export function aggregate(languagesForRepository: LanguagesForRepository[]) {
         let percentage = toPercent(count, total);
         ratioPerLanguage.set(language, percentage)
     });
-    return ratioPerLanguage;
+    return new Statistics(ratioPerLanguage, countPerMainLanguage);
 }
