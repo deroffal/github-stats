@@ -31,17 +31,25 @@ test('aggregate calculates ratio per languages', () => {
     let languagesForRepository = [lr1, lr2, lr3]
 
     //when:
-    let map = aggregate(languagesForRepository);
+    let statistics = aggregate(languagesForRepository);
+    let ratioPerLanguage = statistics.ratioPerLanguage;
+    let countPerMainLanguage = statistics.countPerMainLanguage;
 
     //then:
-    expect(map.size).toBe(7)
+    expect(ratioPerLanguage.size).toBe(7)
 
-    expect(map.get('Java')).toEqual('21')
-    expect(map.get('Javascript')).toEqual('5')
-    expect(map.get('HTML')).toEqual('2')
-    expect(map.get('CSS')).toEqual('1')
-    expect(map.get('Kotlin')).toEqual('35')
-    expect(map.get('Typescript')).toEqual('18')
-    expect(map.get('Groovy')).toEqual('18')
+    expect(ratioPerLanguage.get('Java')).toEqual('21')
+    expect(ratioPerLanguage.get('Javascript')).toEqual('5')
+    expect(ratioPerLanguage.get('HTML')).toEqual('2')
+    expect(ratioPerLanguage.get('CSS')).toEqual('1')
+    expect(ratioPerLanguage.get('Kotlin')).toEqual('35')
+    expect(ratioPerLanguage.get('Typescript')).toEqual('18')
+    expect(ratioPerLanguage.get('Groovy')).toEqual('18')
+
+    //and:
+    expect(countPerMainLanguage.size).toBe(2)
+
+    expect(countPerMainLanguage.get('Java')).toEqual(2)
+    expect(countPerMainLanguage.get('Kotlin')).toEqual(1)
 
 });

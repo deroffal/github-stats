@@ -1,12 +1,17 @@
 import * as github from "./github"
 import * as stats from "./stats"
 
-export async function statsForUser(username: string) {
+import {repositoryOwner} from "./config";
+import {Statistics} from "./models";
+
+main(repositoryOwner)
+    .then(console.info)
+
+async function main(username: string): Promise<Statistics> {
     let userExists = await github.existsByUsername(username)
     if (userExists) {
         let languagesForUser = await github.listLanguagesForUser(username);
-        let statsForUser = stats.aggregate(languagesForUser);
-        console.info(statsForUser)
+        return stats.aggregate(languagesForUser);
     } else {
         throw new Error("Unknown user : " + username)
     }

@@ -9,7 +9,7 @@ if (env !== 'production') {
     require('dotenv').config()
 }
 
-export const repositoryOwner = process.env.REPOSITORY_OWNER
+export const repositoryOwner : string = process.env.REPOSITORY_OWNER!
 if (repositoryOwner === undefined) {
     throw new Error("Please provide a REPOSITORY_OWNER value.")
 }
