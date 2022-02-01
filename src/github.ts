@@ -1,9 +1,12 @@
 import {Octokit, RestEndpointMethodTypes} from "@octokit/rest";
 import {LanguagesForRepository, Repository} from "./models";
+import {githubToken} from "./config";
 
 type ReposForUserRest = RestEndpointMethodTypes["repos"]["listForUser"]["response"]
 
-const octokit = new Octokit();
+const octokit = new Octokit({
+    auth: githubToken
+});
 
 function listReposForUser(username: string) {
     return octokit.rest.repos.listForUser({
