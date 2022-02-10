@@ -2,7 +2,7 @@ import {LanguageCount, LanguagesForRepository} from "./repositories.models";
 import {RatioPerLanguage, Statistics} from "./statistics.models";
 
 export function toPercent(count: number, total: number) {
-    return (count * 100 / total).toFixed(0)
+    return (count * 100 / total).toFixed(2)
 }
 
 function computeRatioPerLanguage(totalPerLanguage: Map<string, number>, totalLines: number) {
@@ -23,6 +23,14 @@ function computeCountPerMainLanguage(cpml: Map<string, number>) {
     return Array.from(cpml.entries())
         .map(countPerLanguage => new LanguageCount(countPerLanguage[0], countPerLanguage[1]));
 }
+
+function getMainLanguage(languagesForRepository: LanguagesForRepository): string | undefined {
+    return [...languagesForRepository.languages]
+        .sort((a, b) => a.compareTo(b))
+        .shift()
+        ?.name
+}
+
 
 export function aggregate(languagesForRepository: LanguagesForRepository[]): Statistics {
     let totalPerLanguage = new Map<string, number>()
@@ -50,12 +58,4 @@ export function aggregate(languagesForRepository: LanguagesForRepository[]): Sta
     let countPerMainLanguage = computeCountPerMainLanguage(cpml);
 
     return new Statistics(ratioPerLanguage, countPerMainLanguage);
-}
-
-
-function getMainLanguage(languagesForRepository: LanguagesForRepository): string | undefined {
-    return [...languagesForRepository.languages]
-        .sort((a, b) => a.compareTo(b))
-        .shift()
-        ?.name
 }

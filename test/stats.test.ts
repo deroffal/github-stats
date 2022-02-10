@@ -3,9 +3,9 @@ import {LanguageCount, LanguagesForRepository, Repository} from "../src/reposito
 
 
 test('toPercent return the rounded percentage', () => {
-    expect(toPercent(10, 20)).toBe("50")
-    expect(toPercent(5, 15)).toBe("33")
-    expect(toPercent(1, 100)).toBe("1")
+    expect(toPercent(10, 20)).toBe("50.00")
+    expect(toPercent(5, 15)).toBe("33.33")
+    expect(toPercent(1, 100)).toBe("1.00")
 })
 
 test('aggregate calculates ratio per languages', () => {
@@ -37,13 +37,13 @@ test('aggregate calculates ratio per languages', () => {
     //then:
     expect(ratioPerLanguage).toHaveLength(7)
 
-    expect(statistics.getRatioForLanguage('Java')).toEqual('21')
-    expect(statistics.getRatioForLanguage('Javascript')).toEqual('5')
-    expect(statistics.getRatioForLanguage('HTML')).toEqual('2')
-    expect(statistics.getRatioForLanguage('CSS')).toEqual('1')
-    expect(statistics.getRatioForLanguage('Kotlin')).toEqual('35')
-    expect(statistics.getRatioForLanguage('Typescript')).toEqual('18')
-    expect(statistics.getRatioForLanguage('Groovy')).toEqual('18')
+    expect(statistics.getRatioForLanguage('Java')).toEqual('21.13')
+    expect(statistics.getRatioForLanguage('Javascript')).toEqual('5.28')
+    expect(statistics.getRatioForLanguage('HTML')).toEqual('2.46')
+    expect(statistics.getRatioForLanguage('CSS')).toEqual('0.70')
+    expect(statistics.getRatioForLanguage('Kotlin')).toEqual('35.21')
+    expect(statistics.getRatioForLanguage('Typescript')).toEqual('17.61')
+    expect(statistics.getRatioForLanguage('Groovy')).toEqual('17.61')
 
     //and:
     expect(countPerMainLanguage).toHaveLength(2)
