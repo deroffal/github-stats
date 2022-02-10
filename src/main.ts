@@ -2,10 +2,13 @@ import * as github from "./github"
 import * as stats from "./stats"
 
 import {repositoryOwner} from "./config";
-import {Statistics} from "./models";
+import {Statistics} from "./statistics.models";
 
 main(repositoryOwner)
-    .then(console.info)
+    .then((s: Statistics) => {
+        let json = JSON.stringify(s);
+        console.log(json);
+    })
 
 async function main(username: string): Promise<Statistics> {
     let userExists = await github.existsByUsername(username)

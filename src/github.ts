@@ -1,6 +1,6 @@
 import {Octokit, RestEndpointMethodTypes} from "@octokit/rest";
-import {LanguagesForRepository, Repository} from "./models";
 import {githubToken} from "./config";
+import {LanguageCount, LanguagesForRepository, Repository} from "./repositories.models";
 
 type ReposForUserRest = RestEndpointMethodTypes["repos"]["listForUser"]["response"]
 
@@ -19,7 +19,8 @@ const listLanguages = (repository: Repository) =>
         owner: repository.owner,
         repo: repository.name
     }).then(({data}) => {
-        return new LanguagesForRepository(repository, new Map(Object.entries(data)));
+        let languages = Object.entries(data).map(countPerLanguage => new LanguageCount(countPerLanguage[0], countPerLanguage[1]))
+        return new LanguagesForRepository(repository, languages);
     });
 
 
