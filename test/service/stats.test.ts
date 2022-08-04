@@ -1,5 +1,5 @@
-import {aggregate, toPercent} from "../src/stats";
-import {LanguageCount, LanguagesForRepository, Repository} from "../src/repositories.models";
+import {aggregate, toPercent} from "../../src/service/stats";
+import {LanguageCount, LanguagesForRepository, Repository} from "../../src/model/repositories.models";
 
 
 test('toPercent return the rounded percentage', () => {

@@ -1,11 +1,11 @@
 import {Octokit, RestEndpointMethodTypes} from "@octokit/rest";
-import {githubToken} from "./config";
-import {LanguageCount, LanguagesForRepository, Repository} from "./repositories.models";
+import {LanguageCount, LanguagesForRepository, Repository} from "../model/repositories.models";
+import {getGithubToken} from "../config/config";
 
 type ReposForUserRest = RestEndpointMethodTypes["repos"]["listForUser"]["response"]
 
 const octokit = new Octokit({
-    auth: githubToken
+    auth:  getGithubToken()
 });
 
 function listReposForUser(username: string) {
@@ -42,13 +42,9 @@ export async function listLanguagesForUser(username: string): Promise<Awaited<La
 }
 
 export async function existsByUsername(username: string) {
-    return octokit.rest.users.getByUsername({
+    console.log(`existsByUsername - ${username}`)
+    let user = await octokit.rest.users.getByUsername({
         username: username
-    }).then(() => {
-            return true;
-        },
-        () => {
-            return false;
-        }
-    )
+    });
+    return user != null
 }

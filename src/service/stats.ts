@@ -1,5 +1,5 @@
-import {LanguageCount, LanguagesForRepository} from "./repositories.models";
-import {RatioPerLanguage, Statistics} from "./statistics.models";
+import {LanguageCount, LanguagesForRepository} from "../model/repositories.models";
+import {RatioPerLanguage, Statistics} from "../model/statistics.models";
 
 export function toPercent(count: number, total: number) {
     return (count * 100 / total).toFixed(2)

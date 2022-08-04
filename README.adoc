@@ -1,15 +1,1 @@
 = github-stats
-
-== Commands
-
-.build
-[source,bash]
-----
-npm run build
-----
-
-.start:dev
-[source,bash]
-----
-npm run dev
-----
